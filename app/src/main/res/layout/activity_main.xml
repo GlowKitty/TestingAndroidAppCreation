@@ -38,12 +38,14 @@
         android:layout_marginTop="27dp"
         android:layout_alignEnd="@+id/editText" />
 
-    <ImageSwitcher
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageSwitcher"
-        android:background="@mipmap/handBehindPhoenix"
+        android:id="@+id/imageView"
         android:layout_below="@+id/switch1"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="36dp"
+        android:background="@mipmap/handBehindPhoenix"
+        android:alpha="0" />
 
 </RelativeLayout>
