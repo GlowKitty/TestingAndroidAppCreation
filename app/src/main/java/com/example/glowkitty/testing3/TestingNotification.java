@@ -51,7 +51,7 @@ public class TestingNotification {
 
 
         final String ticker = exampleString;
-        final String title = "This is just a test";
+        final String title = exampleString;
         final String text = exampleString;
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)

@@ -3,7 +3,10 @@ package com.example.glowkitty.testing3;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -19,7 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonOnClick(View v) {
         TestingNotification test = new TestingNotification();
-        test.notify(getBaseContext(), "testing thign", 1);
+        EditText inputTxt = (EditText) findViewById(R.id.editText);
+        //String str = inputTxt.getText().toString();
+        test.notify(getBaseContext(), inputTxt.getText().toString(), 1);
     }
 
     @Override
