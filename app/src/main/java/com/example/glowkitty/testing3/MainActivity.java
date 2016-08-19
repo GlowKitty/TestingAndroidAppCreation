@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private GoogleApiClient client;
 
+
     public void buttonOnClick(View v) {
         TestingNotification test = new TestingNotification();
         EditText inputTxt = (EditText) findViewById(R.id.editText);
@@ -27,10 +30,23 @@ public class MainActivity extends AppCompatActivity {
         test.notify(getBaseContext(), inputTxt.getText().toString(), 1);
     }
 
+    public void turnPhoenixOnSwitch(View v) {
+        Switch sw = (Switch) findViewById(R.id.switch1);
+        ImageView img = (ImageView) findViewById(R.id.phoenix);
+        if (sw.isChecked()) {
+            img.setImageResource(R.drawable.objection);
+        } else {
+            img.setImageResource(R.drawable.sweaty);
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ImageView img = (ImageView) findViewById(R.id.phoenix);
+        img.setImageResource(R.drawable.sweaty);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
