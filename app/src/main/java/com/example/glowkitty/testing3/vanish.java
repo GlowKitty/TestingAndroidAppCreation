@@ -9,7 +9,6 @@ public class vanish implements Runnable {
     private ImageView objection;
     public void run() {
         objection.setImageResource(0);
-        //objection.clearAnimation();
     }
     public vanish(ImageView obj) {
         objection = obj;

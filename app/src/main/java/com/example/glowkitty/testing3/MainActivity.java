@@ -32,12 +32,17 @@ public class MainActivity extends AppCompatActivity {
         test.notify(getBaseContext(), inputTxt.getText().toString(), 1);
     }
 
+    ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     public void turnPhoenixOnSwitch(View v) {
+        try {
+            executor.shutdownNow();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        executor = Executors.newSingleThreadScheduledExecutor();
         Switch sw = (Switch) findViewById(R.id.switch1);
         ImageView img = (ImageView) findViewById(R.id.phoenix);
         ImageView obj = (ImageView) findViewById(R.id.objection);
-        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
-
         if (sw.isChecked()) {
             img.setImageResource(R.drawable.pointer);
             obj.setImageResource(R.drawable.objection);
@@ -45,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
             obj.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake));
 
             Runnable task = new vanish(obj);
-            executor.schedule(task, 1, TimeUnit.SECONDS);
+
+            executor.schedule(task, 1000, TimeUnit.MILLISECONDS);
         } else {
             img.setImageResource(R.drawable.sweaty);
             obj.setImageResource(0);
         }
-        executor.shutdown();
     }
 
     @Override
