@@ -1,24 +1,23 @@
 package com.example.glowkitty.testing3;
 
+import android.media.Image;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
-import android.widget.TextView;
-import android.widget.ViewAnimator;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,15 +38,21 @@ public class MainActivity extends AppCompatActivity {
         Switch sw = (Switch) findViewById(R.id.switch1);
         ImageView img = (ImageView) findViewById(R.id.phoenix);
         ImageView obj = (ImageView) findViewById(R.id.objection);
+        ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+
         if (sw.isChecked()) {
             img.setImageResource(R.drawable.pointer);
             obj.setImageResource(R.drawable.objection);
-            Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
-            obj.setAnimation(shake);
+
+            obj.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake));
+
+            Runnable task = new vanish(obj);
+            executor.schedule(task, 1, TimeUnit.SECONDS);
         } else {
             img.setImageResource(R.drawable.sweaty);
             obj.setImageResource(0);
         }
+        executor.shutdown();
     }
 
     @Override
