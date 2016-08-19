@@ -33,8 +33,10 @@ public class MainActivity extends AppCompatActivity {
     public void turnPhoenixOnSwitch(View v) {
         Switch sw = (Switch) findViewById(R.id.switch1);
         ImageView img = (ImageView) findViewById(R.id.phoenix);
+        //ImageView obj = (ImageView) findViewById(R.id.objection);
         if (sw.isChecked()) {
-            img.setImageResource(R.drawable.objection);
+            img.setImageResource(R.drawable.pointer);
+            //obj.setImageResource(R.drawable.objection);
         } else {
             img.setImageResource(R.drawable.sweaty);
         }
@@ -45,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ImageView img = (ImageView) findViewById(R.id.phoenix);
-        img.setImageResource(R.drawable.sweaty);
+        Switch sw = (Switch) findViewById(R.id.switch1);
+        sw.setChecked(false);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
