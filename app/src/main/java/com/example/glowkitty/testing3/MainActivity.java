@@ -5,14 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.TranslateAnimation;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.ViewAnimator;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,22 +32,23 @@ public class MainActivity extends AppCompatActivity {
     public void buttonOnClick(View v) {
         TestingNotification test = new TestingNotification();
         EditText inputTxt = (EditText) findViewById(R.id.editText);
-        //String str = inputTxt.getText().toString();
         test.notify(getBaseContext(), inputTxt.getText().toString(), 1);
     }
 
     public void turnPhoenixOnSwitch(View v) {
         Switch sw = (Switch) findViewById(R.id.switch1);
         ImageView img = (ImageView) findViewById(R.id.phoenix);
-        //ImageView obj = (ImageView) findViewById(R.id.objection);
+        ImageView obj = (ImageView) findViewById(R.id.objection);
         if (sw.isChecked()) {
             img.setImageResource(R.drawable.pointer);
-            //obj.setImageResource(R.drawable.objection);
+            obj.setImageResource(R.drawable.objection);
+            Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
+            obj.setAnimation(shake);
         } else {
             img.setImageResource(R.drawable.sweaty);
+            obj.setImageResource(0);
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
