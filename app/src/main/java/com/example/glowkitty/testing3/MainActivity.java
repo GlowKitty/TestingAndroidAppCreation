@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     MediaPlayer mp;
-
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     public void turnPhoenixOnSwitch(View v) {
         try {
