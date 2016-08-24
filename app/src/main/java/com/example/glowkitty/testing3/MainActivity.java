@@ -1,5 +1,6 @@
 package com.example.glowkitty.testing3;
 
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         test.notify(getBaseContext(), inputTxt.getText().toString(), 1);
     }
 
+    final MediaPlayer mp = MediaPlayer.create(this, R.raw.objection);
+
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     public void turnPhoenixOnSwitch(View v) {
         try {
@@ -48,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             obj.setImageResource(R.drawable.objection);
 
             obj.startAnimation(AnimationUtils.loadAnimation(this, R.anim.shake));
+            mp.start();
 
             Runnable task = new vanish(obj);
 
