@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         test.notify(getBaseContext(), inputTxt.getText().toString(), 1);
     }
 
-    final MediaPlayer mp = MediaPlayer.create(this, R.raw.objection);
+    MediaPlayer mp;
 
     ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
     public void turnPhoenixOnSwitch(View v) {
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Switch sw = (Switch) findViewById(R.id.switch1);
+        mp = MediaPlayer.create(this, R.raw.objection);
         sw.setChecked(false);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
